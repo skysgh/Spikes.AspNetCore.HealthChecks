@@ -11,15 +11,20 @@ namespace Spikes.Host.Healthchecks
             var isHealthy = true;
 
             // ...
+            Dictionary<string, object> properties =
+                new Dictionary<string, object>();
 
             if (isHealthy)
             {
+                properties.Add("KeyA", "KeyB");
+                properties.Add("KeyB", Guid.NewGuid());
+
                 return Task.FromResult(
                     HealthCheckResult.Healthy(
-                        "A healthy result."));
+                        "A healthy result :-)",
+                        properties
+                    ));
             }
-            Dictionary<string, object> properties = 
-                new Dictionary<string, object>();
 
             properties.Add("KeyA", "KeyB");
             properties.Add("KeyB", Guid.NewGuid());
